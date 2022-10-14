@@ -1,0 +1,41 @@
+{
+    "name": "mostlyserious/craft-marker",
+    "description": "Adds the Marker.io feedback widget to environments you configure.",
+    "type": "craft-plugin",
+    "version": "1.0.0",
+    "keywords": [
+        "craft",
+        "cms",
+        "craftcms",
+        "craft-plugin",
+        "marker"
+    ],
+    "support": {
+        "docs": "https://github.com/mostlyserious/craft-marker/blob/master/README.md",
+        "issues": "https://github.com/mostlyserious/craft-marker/issues"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mostly Serious",
+            "homepage": "https://www.mostlyserious.io/"
+        }
+    ],
+    "require": {
+        "craftcms/cms": "^4.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+          "mostlyserious\\marker\\": "src/"
+        }
+    },
+    "extra": {
+        "name": "Marker",
+        "handle": "marker",
+        "developer": "Mostly Serious",
+        "developerUrl": "https://www.mostlyserious.io/",
+        "documentationUrl": "https://github.com/mostlyserious/craft-marker/blob/master/README.md",
+        "changelogUrl": "https://raw.githubusercontent.com/mostlyserious/craft-marker/master/CHANGELOG.md",
+        "class": "mostlyserious\\marker\\Marker"
+    }
+}
