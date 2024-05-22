@@ -11,6 +11,25 @@
         "craftcms/ecs": "dev-main",
         "craftcms/phpstan": "dev-main"
     },
+    "keywords": [
+        "craft",
+        "craftcms",
+        "craft-plugin",
+        "marker",
+        "marker.io"
+    ],
+    "support": {
+        "email": "devops@mostlyserious.io",
+        "issues": "https://github.com/mostlyserious/craft-marker/issues",
+        "source": "https://github.com/mostlyserious/craft-marker",
+        "docs": "https://github.com/mostlyserious/craft-marker"
+    },
+    "authors": [
+        {
+            "name": "Mostly Serious",
+            "homepage": "https://github.com/mostlyserious"
+        }
+    ],
     "autoload": {
         "psr-4": {
             "mostlyserious\\craftmarker\\": "src/"
@@ -20,7 +39,7 @@
         "handle": "marker",
         "name": "Marker",
         "developer": "Mostly Serious",
-        "documentationUrl": ""
+        "documentationUrl": "https://github.com/mostlyserious/craft-marker"
     },
     "scripts": {
         "check-cs": "ecs check --ansi",
