@@ -1,41 +1,41 @@
 {
-    "name": "mostlyserious/craft-marker",
-    "description": "Adds the Marker.io feedback widget to environments you configure.",
+    "name": "mostly-serious/craft-marker",
+    "description": "Easily add Marker.io to your CraftCMS site.",
     "type": "craft-plugin",
-    "version": "1.0.0",
-    "keywords": [
-        "craft",
-        "cms",
-        "craftcms",
-        "craft-plugin",
-        "marker"
-    ],
-    "support": {
-        "docs": "https://github.com/mostlyserious/craft-marker/blob/master/README.md",
-        "issues": "https://github.com/mostlyserious/craft-marker/issues"
-    },
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Mostly Serious",
-            "homepage": "https://www.mostlyserious.io/"
-        }
-    ],
+    "license": "proprietary",
     "require": {
-        "craftcms/cms": "^4.0.0"
+        "php": ">=8.0.2",
+        "craftcms/cms": "^4.9.0"
+    },
+    "require-dev": {
+        "craftcms/ecs": "dev-main",
+        "craftcms/phpstan": "dev-main"
     },
     "autoload": {
         "psr-4": {
-          "mostlyserious\\marker\\": "src/"
+            "mostlyserious\\craftmarker\\": "src/"
         }
     },
     "extra": {
-        "name": "Marker",
         "handle": "marker",
+        "name": "Marker",
         "developer": "Mostly Serious",
-        "developerUrl": "https://www.mostlyserious.io/",
-        "documentationUrl": "https://github.com/mostlyserious/craft-marker/blob/master/README.md",
-        "changelogUrl": "https://raw.githubusercontent.com/mostlyserious/craft-marker/master/CHANGELOG.md",
-        "class": "mostlyserious\\marker\\Marker"
+        "documentationUrl": ""
+    },
+    "scripts": {
+        "check-cs": "ecs check --ansi",
+        "fix-cs": "ecs check --ansi --fix",
+        "phpstan": "phpstan --memory-limit=1G"
+    },
+    "config": {
+        "sort-packages": true,
+        "platform": {
+            "php": "8.0.2"
+        },
+        "allow-plugins": {
+            "yiisoft/yii2-composer": true,
+            "craftcms/plugin-installer": true
+        }
     }
 }
+

@@ -1,0 +1,105 @@
+{# @var plugin \mostlyserious\craftmarker\Plugin #}
+{# @var settings \mostlyserious\craftmarker\models\Settings #}
+{# @var overrides array #}
+
+{% import '_includes/forms.twig' as forms %}
+
+{% macro configWarning(setting) -%}
+    {% set setting = '<code>'~setting~'</code>' %}
+    {{ "This is being overridden by the {setting} config setting in your {file} config file."|t('marker', {
+        setting: setting,
+        file: 'marker.php'
+    })|raw }}
+{% endmacro %}
+{% from _self import configWarning %}
+
+<div class="field">
+    {{ forms.lightswitchfield({
+        label: 'Display Widget'|t('marker'),
+        name: 'enableWidget',
+        on: settings.enableWidget,
+        disabled: 'enableWidget' in overrides,
+        warning: 'enableWidget' in overrides ? configWarning('enableWidget'),
+        instructions: 'Registers the Marker.io widget as a script tag in the head of your Twig templates.'|t('marker')
+    }) }}
+</div>
+<div class="field">
+    {{ forms.lightswitchfield({
+        label: 'Display Widget in CP'|t('marker'),
+        name: 'enableWidgetCp',
+        on: settings.enableWidgetCp,
+        disabled: 'enableWidgetCp' in overrides,
+        warning: 'enableWidgetCp' in overrides ? configWarning('enableWidgetCp'),
+        instructions: 'Adds the Marker.io widget in the CraftCMS Control Panel.'|t('marker')
+    }) }}
+</div>
+<div class="field">
+    {{ forms.autosuggestField({
+        label: 'Project ID'|t('marker'),
+        required: true,
+        name: 'project',
+        type: 'text',
+        class: '',
+        suggestEnvVars: not 'project' in overrides,
+        suggestions: craft.cp.getEnvSuggestions(),
+        value: settings.project,
+        disabled: 'project' in overrides,
+        errors: settings.getErrors('project'),
+        warning: 'project' in overrides ? configWarning('project'),
+        instructions: 'Add your Project ID.'|t('marker'),
+    }) }}
+</div>
+<div class="field">
+    {{ forms.lightswitchfield({
+        label: 'Silent Mode'|t('marker'),
+        name: 'silent',
+        on: settings.silent,
+        disabled: 'silent' in overrides,
+        warning: 'silent' in overrides ? configWarning('silent'),
+        instructions: 'Prevents Marker.io from sending logs to the console.'|t('marker')
+    }) }}
+</div>
+<div class="field">
+    {{ forms.textField( {
+        label: 'Delayed Capture'|t('marker'),
+        name: 'renderDelay',
+        class: '',
+        value: settings.renderDelay,
+        errors: settings.getErrors('renderDelay'),
+        disabled: 'renderDelay' in overrides,
+        warning: 'renderDelay' in overrides ? configWarning('renderDelay'),
+        instructions: 'Number of milliseconds to delay screenshot capture. Useful if you need to allow CSS animations to run first.'|t('marker')
+    }) }}
+</div>
+<div class="field">
+    {{ forms.lightswitchfield({
+        label: 'Keyboard Shortcuts'|t('marker'),
+        name: 'keyboardShortcuts',
+        on: settings.keyboardShortcuts,
+        disabled: 'keyboardShortcuts' in overrides,
+        warning: 'keyboardShortcuts' in overrides ? configWarning('keyboardShortcuts'),
+        instructions: 'Toggles Marker.io keyboard shortcuts.'|t('marker')
+    }) }}
+</div>
+<div class="field">
+    {{ forms.lightswitchfield({
+        label: 'Use Native Browser Screenshot Rendering'|t('marker'),
+        name: 'useNativeScreenshot',
+        on: settings.useNativeScreenshot,
+        disabled: 'useNativeScreenshot' in overrides,
+        warning: 'useNativeScreenshot' in overrides ? configWarning('useNativeScreenshot'),
+        instructions: 'Enable only if you are experiencing issues with the default server-side renderer. Not supported on mobile.'|t('marker')
+    }) }}
+</div>
+<div class="field">
+    {{ forms.lightswitchfield({
+        label: 'Remove Screenshot Booster'|t('marker'),
+        name: 'extension',
+        on: settings.extension,
+        disabled: 'extension' in overrides,
+        warning: 'extension' in overrides ? configWarning('extension'),
+        instructions: 'Removes the screenshot booster link from the widget.'|t('marker')
+    }) }}
+</div>
+
+<p>For more information on widget configuration see the <a href="https://help.marker.io/en/articles/4621840-widget-javascript-sdk" target="_blank">Marker.io Javascript SDK</a>. Sign up for an account at <a href="https://marker.io/" target="_blank">Marker.io</a>.</p>
