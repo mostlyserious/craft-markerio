@@ -4,6 +4,14 @@
 
 - Merge version 1.X changes into Craft 5 version.
 
+## 1.1.2 - 2024-05-31
+
+Composer.json whitespace edit
+
+## 1.1.1 - 2024-05-31
+
+Bug fixes
+
 ## 1.1.0 - 2024-05-31
 
 - Change plugin name and namespace
