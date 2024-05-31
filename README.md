@@ -25,7 +25,7 @@ Open your terminal and run the following commands:
 cd /path/to/my-project.test
 
 # tell Composer to load the plugin
-composer require mostly-serious/craft-markerio
+composer require mostlyserious/craft-markerio
 
 # tell Craft to install the plugin
 ./craft plugin/install markerio
@@ -46,9 +46,10 @@ use craft\helpers\App;
 /* Example /config/markerio.php */
 
 return [
+    'project' => App::env('YOUR_ENV_VAR_HERE'),
     'enableWidgetFe' => true,
     'enableWidgetCp' => true,
-    'project' => App::env('YOUR_ENV_VAR_HERE'),
+    'requireLogin' => false,
     'silent' => false,
     'renderDelay' => 1200,
     'keyboardShortcuts' => false,
@@ -68,7 +69,7 @@ If you require advanced features such as Reporter Identification or Custom Metad
 {# The project id, ex: "369ajJu************" #}
 
 {{ craft.markerio.markerConfig }}
-{# The configuration data as an associative array, ex. ' [ 'project' => ..., '' => ... ] ' #}
+{# The configuration data as an associative array, ex. '{{ craft.markerio.markerConfig.project }}' #}
 
 {{ craft.markerio.markerConfigScript|raw }}
 {# The configuration script, ex 'window.markerConfig = { ... }' including your config settings (no script tag). #}
