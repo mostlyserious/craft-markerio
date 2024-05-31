@@ -14,7 +14,7 @@ You can install this plugin from the Plugin Store or with Composer.
 
 #### From the Plugin Store
 
-Go to the Plugin Store in your project’s Control Panel and search for “Marker”. Then press “Install”.
+Go to the Plugin Store in your project’s Control Panel and search for “Marker.io”. Then press “Install”.
 
 #### With Composer
 
@@ -25,10 +25,10 @@ Open your terminal and run the following commands:
 cd /path/to/my-project.test
 
 # tell Composer to load the plugin
-composer require mostly-serious/craft-marker
+composer require mostly-serious/craft-markerio
 
 # tell Craft to install the plugin
-./craft plugin/install marker
+./craft plugin/install markerio
 ```
 
 ## Usage
@@ -43,10 +43,10 @@ That's it! You can configure the widget further using the settings provided. All
 
 use craft\helpers\App;
 
-/* Example /config/marker.php */
+/* Example /config/markerio.php */
 
 return [
-    'enableWidget' => true,
+    'enableWidgetFe' => true,
     'enableWidgetCp' => true,
     'project' => App::env('YOUR_ENV_VAR_HERE'),
     'silent' => false,
@@ -61,13 +61,29 @@ The plugin automatically add the Marker.io widget in the `<head>` for you.
 
 ## Variables and Advanced Configuration
 
-The following variables are available for you to use in Twig templates:
+If you require advanced features such as Reporter Identification or Custom Metadata, or if you prefer to add the Marker.io widget to your templates manually, you may use the following variables in Twig templates:
+
+```twig
+{{ craft.markerio.project }}
+{# The project id, ex: "369ajJu************" #}
+
+{{ craft.markerio.markerConfig }}
+{# The configuration data as an associative array, ex. ' [ 'project' => ..., '' => ... ] ' #}
+
+{{ craft.markerio.markerConfigScript|raw }}
+{# The configuration script, ex 'window.markerConfig = { ... }' including your config settings (no script tag). #}
+
+{{ craft.markerio.widgetShim|raw }}
+{# The Marker.io width shim, ex '!function(...' with no script tag. #}
 ```
-{{ craft.marker.project }}
 
-{{ craft.marker.markerConfigScript }}
+When rendering the widget manually, be sure to disable the widget on the front end in your config settings.
+```php
 
-{{ craft.marker.widgetShim }}
+return [
+    'enableWidgetFe' => false,
+    // ...
+];
 ```
 
-If you need advanced configuration for your widget such as a Reporter or Custom Data, you can use these variables to create script tags manually.
+You will also need to manage your own `requireLogin` logic when rendering the widget manually.
