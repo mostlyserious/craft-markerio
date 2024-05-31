@@ -33,7 +33,7 @@
     {{ forms.lightswitchfield({
         label: 'Display Widget in Frontend'|t('markerio'),
         name: 'enableWidgetFe',
-        on: settings.enableWidget,
+        on: settings.enableWidgetFe,
         disabled: 'enableWidgetFe' in overrides,
         warning: 'enableWidgetFe' in overrides ? configWarning('enableWidgetFe'),
         instructions: 'Adds the Marker.io widget as a script tag in the head of your Twig templates.'|t('markerio')

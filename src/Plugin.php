@@ -59,7 +59,7 @@ class Plugin extends BasePlugin
     {
         $overrides = Craft::$app->getConfig()->getConfigFromFile(strtolower($this->handle));
 
-        return Craft::$app->view->renderTemplate('marker/_settings.twig', [
+        return Craft::$app->view->renderTemplate('markerio/_settings.twig', [
             'plugin' => $this,
             'settings' => $this->getSettings(),
             'overrides' => array_keys($overrides),

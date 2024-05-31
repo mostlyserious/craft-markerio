@@ -13,12 +13,12 @@ class Variable
 
     public function markerConfig(): array
     {
-        return Plugin::getInstance()->markerConfig;
+        return Plugin::getInstance()->widgetConfig;
     }
 
     public function markerConfigScript(): ?string
     {
-        return Plugin::getInstance()->markerConfigScript;
+        return Plugin::getInstance()->widgetConfigScript;
     }
 
     public function widgetShim(): string
