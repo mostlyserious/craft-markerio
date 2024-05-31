@@ -1,12 +1,12 @@
 <?php
 
-namespace mostlyserious\craftmarker\variables;
+namespace mostlyserious\craftmarkerio\variables;
 
-use mostlyserious\craftmarker\Plugin;
+use mostlyserious\craftmarkerio\Plugin;
 
-class MarkerVariable
+class Variable
 {
-    public function project():string
+    public function project(): string
     {
         return Plugin::getInstance()->getSettings()->getProject();
     }

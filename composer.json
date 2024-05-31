@@ -1,11 +1,11 @@
 {
-    "name": "mostly-serious/craft-marker",
+    "name": "mostlyserious/craft-markerio",
     "description": "Easily add Marker.io to your CraftCMS site.",
     "type": "craft-plugin",
     "license": "proprietary",
     "require": {
         "php": ">=8.0.2",
-        "craftcms/cms": "^4.9.0"
+        "craftcms/cms": "^4.9.0 || ^5.0.0"
     },
     "require-dev": {
         "craftcms/ecs": "dev-main",
@@ -20,9 +20,9 @@
     ],
     "support": {
         "email": "devops@mostlyserious.io",
-        "issues": "https://github.com/mostlyserious/craft-marker/issues",
-        "source": "https://github.com/mostlyserious/craft-marker",
-        "docs": "https://github.com/mostlyserious/craft-marker"
+        "issues": "https://github.com/mostlyserious/craft-markerio/issues",
+        "source": "https://github.com/mostlyserious/craft-markerio",
+        "docs": "https://github.com/mostlyserious/craft-markerio"
     },
     "authors": [
         {
@@ -32,14 +32,14 @@
     ],
     "autoload": {
         "psr-4": {
-            "mostlyserious\\craftmarker\\": "src/"
+            "mostlyserious\\craftmarkerio\\": "src/"
         }
     },
     "extra": {
-        "handle": "marker",
-        "name": "Marker",
+        "handle": "markerio",
+        "name": "Marker.io",
         "developer": "Mostly Serious",
-        "documentationUrl": "https://github.com/mostlyserious/craft-marker"
+        "documentationUrl": "https://github.com/mostlyserious/craft-markerio"
     },
     "scripts": {
         "check-cs": "ecs check --ansi",

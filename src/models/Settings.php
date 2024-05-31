@@ -1,6 +1,6 @@
 <?php
 
-namespace mostlyserious\craftmarker\models;
+namespace mostlyserious\craftmarkerio\models;
 
 use craft\base\Model;
 use craft\helpers\App;
@@ -10,8 +10,9 @@ use craft\helpers\App;
  */
 class Settings extends Model
 {
-    public $enableWidget = true;
+    public $enableWidgetFe = true;
     public $enableWidgetCp = false;
+    public $requireLogin = false;
     public $project = '';
     public $silent = false;
     public $renderDelay = 0;
@@ -23,7 +24,6 @@ class Settings extends Model
     {
         return [
             [['project'], 'required'],
-            // ...
         ];
     }
 
