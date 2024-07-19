@@ -1,5 +1,11 @@
 # Release Notes for Marker.io
 
+## 2.1.1 - 2024-07-19
+
+- Change useNativeScreenshot to be false by default
+- Ensure project property is always a string
+- Do not register javascript if project string is empty
+
 ## 2.1.0 - 2024-05-31
 
 - Merge version 1.X changes into Craft 5 version.

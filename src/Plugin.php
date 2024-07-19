@@ -28,6 +28,7 @@ class Plugin extends BasePlugin
 
     public array $widgetConfig = [];
     public string $widgetConfigScript = '';
+    public string $project = '';
 
     public const WIDGET_SHIM = '!function(e,r,a){if(!e.__Marker){e.__Marker={};var t=[],n={__cs:t};["show","hide","isVisible","capture","cancelCapture","unload","reload","isExtensionInstalled","setReporter","setCustomData","on","off"].forEach(function(e){n[e]=function(){var r=Array.prototype.slice.call(arguments);r.unshift(e),t.push(r)}}),e.Marker=n;var s=r.createElement("script");s.async=1,s.src="https://edge.marker.io/latest/shim.js";var i=r.getElementsByTagName("script")[0];i.parentNode.insertBefore(s,i)}}(window,document);';
 
@@ -41,7 +42,8 @@ class Plugin extends BasePlugin
     public function init(): void
     {
         parent::init();
-        
+
+        $this->project = $this->settings->getProject();
         $this->widgetConfig = $this->createWidgetConfig();
         $this->widgetConfigScript = $this->createWidgetConfigScript($this->widgetConfig);
 
@@ -61,16 +63,13 @@ class Plugin extends BasePlugin
 
         return Craft::$app->view->renderTemplate('markerio/_settings.twig', [
             'plugin' => $this,
-            'settings' => $this->getSettings(),
+            'settings' => $this->settings,
             'overrides' => array_keys($overrides),
         ]);
     }
 
     private function attachEventHandlers(): void
     {
-        /** @var \mostlyserious\craftmarkerio\models\Settings $settings */
-        $settings = $this->getSettings();
-
         Event::on(
             CraftVariable::class,
             CraftVariable::EVENT_INIT,
@@ -81,20 +80,26 @@ class Plugin extends BasePlugin
             }
         );
 
+        /** A project is required to add the widget script to the page. */
+        if ($this->project === '') {
+            Craft::info('No Marker.io project configured.', __METHOD__);
+            return;
+        }
+
         /** @var \craft\elements\User|null $currentUser */
         $currentUser = Craft::$app->getUser()->getIdentity();
 
-        if (!$currentUser && $settings->requireLogin) {
+        if (!$currentUser && $this->settings->requireLogin) {
             return;
         }
 
         if (
             (
                 !Craft::$app->request->getIsCpRequest()
-                && $settings->enableWidgetFe
+                && $this->settings->enableWidgetFe
             ) || (
                 Craft::$app->request->getIsCpRequest()
-                && $settings->enableWidgetCp
+                && $this->settings->enableWidgetCp
             )
         ) {
             Event::on(
@@ -115,17 +120,14 @@ class Plugin extends BasePlugin
 
     private function createWidgetConfig(): array
     {
-        /** @var \mostlyserious\craftmarkerio\models\Settings $settings */
-        $settings = $this->getSettings();
-
         return [
-            'project' => (string) $settings->getProject(),
+            'project' => (string) $this->project,
             'source' => 'snippet',
-            'silent' => (bool) $settings->silent,
-            'renderDelay' => (int) $settings->renderDelay,
-            'keyboardShortcuts' => (bool) $settings->keyboardShortcuts,
-            'useNativeScreenshot' => (bool) $settings->useNativeScreenshot,
-            'extension' => (bool) $settings->extension,
+            'silent' => (bool) $this->settings->silent,
+            'renderDelay' => (int) $this->settings->renderDelay,
+            'keyboardShortcuts' => (bool) $this->settings->keyboardShortcuts,
+            'useNativeScreenshot' => (bool) $this->settings->useNativeScreenshot,
+            'extension' => (bool) $this->settings->extension,
         ];
     }
 
