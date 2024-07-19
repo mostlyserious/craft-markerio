@@ -29,6 +29,6 @@ class Settings extends Model
 
     public function getProject(): string
     {
-        return App::parseEnv($this->project);
+        return strval(App::parseEnv($this->project));
     }
 }
