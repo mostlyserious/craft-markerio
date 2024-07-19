@@ -17,7 +17,7 @@ class Settings extends Model
     public $silent = false;
     public $renderDelay = 0;
     public $keyboardShortcuts = true;
-    public $useNativeScreenshot = true;
+    public $useNativeScreenshot = false;
     public $extension = false;
 
     public function defineRules(): array
