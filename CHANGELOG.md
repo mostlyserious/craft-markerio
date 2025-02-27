@@ -1,5 +1,10 @@
 # Release Notes for Marker.io
 
+## 2.2.0 - 2025-02-27
+
+- Updated Marker.io logo
+- Prevent widget from loading in Craft CMS Live Preview mode
+
 ## 2.1.1 - 2024-07-19
 
 - Change useNativeScreenshot to be false by default

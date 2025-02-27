@@ -93,6 +93,11 @@ class Plugin extends BasePlugin
             return;
         }
 
+        /** Don't load the widget in Live Preview mode */
+        if (Craft::$app->request->isPreview) {
+            return;
+        }
+
         if (
             (
                 !Craft::$app->request->getIsCpRequest()
